@@ -22,7 +22,7 @@ jobs:
       - name: Install libopus from APT
         run: apt install libopus0
       - name: Copy Shared Library
-        run: cp "$(find /usr/lib -name libopus.so.0 -print)" .
+        run: cp "$(find /usr/lib -name libopus.so.0 -print)" libopus.so
       - name: Upload Artifact ${{ matrix.arch }}
         uses: actions/upload-artifact@v3
         with:
