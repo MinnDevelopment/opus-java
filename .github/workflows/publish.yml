@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Install libopus from APT
         run: apt install libopus0
+      - name: Make directory
+        run: mkdir -p natives/src/main/resources/linux-${{ matrix.arch }}
       - name: Copy Shared Library
         run: cp "$(find /usr/lib -name libopus.so.0 -print)" natives/src/main/resources/linux-${{ matrix.arch }}/libopus.so
   build:
