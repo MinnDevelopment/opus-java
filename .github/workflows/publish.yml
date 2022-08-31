@@ -15,6 +15,10 @@ jobs:
         include:
           - container: ubuntu:14.04
             arch: x86-64
+          - container: arm32v7/ubuntu:14.04
+            arch: arm
+          - container: 32bit/ubuntu:16.04-armhf
+            arch: x86
     runs-on: ubuntu-latest
     container:
       image: ${{ matrix.container }}
@@ -40,8 +44,10 @@ jobs:
             path: .
         - name: Move Artifacts
           run: |
-            mkdir -p natives/src/main/resources/linux-x86-64-test
-            mv x86-64-libopus.so natives/src/main/resources/linux-x86-64-test/libopus.so
+            mkdir -p natives/src/main/resources/natives/linux-x86-64 natives/src/main/resources/natives/linux-x86 natives/src/main/resources/natives/linux-arm
+            mv x86-64-libopus.so natives/src/main/resources/natives/linux-x86-64/libopus.so
+            mv x86-libopus.so natives/src/main/resources/natives/linux-x86/libopus.so
+            mv arm-libopus.so natives/src/main/resources/natives/linux-arm/libopus.so
         - name: Make gradlew executable
           run: chmod u+x gradlew
         - name: Build jar
