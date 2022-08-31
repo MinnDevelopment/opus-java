@@ -15,7 +15,6 @@ jobs:
         include:
           - container: ubuntu:14.04
             arch: x86-64
-            src_dir: /usr/lib/x86_64-linux-gnu/libopus.so.0
     runs-on: ubuntu-latest
     container:
       image: ${{ matrix.container }}
@@ -23,7 +22,7 @@ jobs:
       - name: Install libopus from APT
         run: apt install libopus0
       - name: Copy Shared Library
-        run: cp ${{ matrix.src_dir }} natives/src/main/resources/linux-${{ matrix.arch }}/libopus.so
+        run: cp "$(find /usr/lib -name libopus.so.0 -print)" natives/src/main/resources/linux-${{ matrix.arch }}/libopus.so
   build:
       needs: linux
       runs-on: ubuntu-latest
