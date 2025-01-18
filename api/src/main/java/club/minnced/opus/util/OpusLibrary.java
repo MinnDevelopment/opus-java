@@ -30,7 +30,8 @@ public final class OpusLibrary {
 
     static {
         platforms = new HashMap<>(10);
-        platforms.put("darwin", "dylib");
+        platforms.put("darwin-x86-64", "dylib");
+        platforms.put("darwin-aarch64", "dylib");
         platforms.put("linux-arm", "so");
         platforms.put("linux-aarch64", "so");
         platforms.put("linux-x86", "so");
